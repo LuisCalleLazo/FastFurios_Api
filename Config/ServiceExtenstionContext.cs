@@ -9,7 +9,7 @@ namespace FastFurios_Api.Config
   {
     public static void ConfigureContext(this IServiceCollection services, WebApplicationBuilder builder)
     {
-      string connectionAuthDb = builder.Configuration.GetConnectionString("SqlServerAuthDb");
+      string connectionAuthDb = builder.Configuration.GetConnectionString("SqlServerDb");
       
       services.AddDbContext<DataContext>(options => 
       {

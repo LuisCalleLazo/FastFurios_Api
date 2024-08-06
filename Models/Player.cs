@@ -11,12 +11,14 @@ namespace FastFurios_Api.Models
     [EmailAddress]
     public string Email {get; set;}
     public string Password {get; set;}
-    public Guid? PasswordSalt {get; set;}
+    public Guid PasswordSalt {get; set;}
+    public DateTime BirthDate { get; set; }
     public string GoogleId { get; set; } 
     public string FacebookId { get; set; } 
 
     // todo: Inheritances
     public virtual ICollection<ObjectItem> ObjectItems {get; set;}
     public virtual ICollection<PaymentSkin> PaymentSkins {get; set;}
+    public virtual ICollection<Token> Tokens {get; set;}
   }
 }

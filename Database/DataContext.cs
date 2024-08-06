@@ -12,8 +12,14 @@ namespace FastFurios_Api.Database
     public DbSet<ObjectDetail> ObjectDetail { get; set; }
     public DbSet<PaymentSkin> PaymentSkin { get; set; }
     public DbSet<Skin> Skin { get; set; }
+    public DbSet<Token> Token { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<Token>(t => {
+        t.HasOne(t => t.PlayerRef)
+          .WithMany(t => t.Tokens)
+          .HasForeignKey(t => t.PlayerId);
+      });
       
       modelBuilder.Entity<Player>(t => {
         
