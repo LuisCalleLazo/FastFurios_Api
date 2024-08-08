@@ -1,6 +1,5 @@
 using AutoMapper;
 using FastFurios_Api.Dtos;
-using FastFurios_Api.Dtos.Player;
 using FastFurios_Api.Models;
 using FastFurios_Api.Repositories.Interfaces;
 using FastFurios_Api.Security;
@@ -19,6 +18,9 @@ namespace FastFurios_Api.Services
       _tokenRepo = tokenRepo;
       _playerRepo = playerRepo;
       _mapper = mapper;
+    }
+    public AuthService()
+    {
     }
     // TODO: AUTHENTICATION
     

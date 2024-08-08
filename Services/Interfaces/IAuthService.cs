@@ -1,5 +1,4 @@
 using FastFurios_Api.Dtos;
-using FastFurios_Api.Dtos.Player;
 
 namespace FastFurios_Api.Services.Interfaces
 {

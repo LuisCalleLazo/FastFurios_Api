@@ -1,4 +1,3 @@
-using FastFurios_Api.Dtos.Player;
 
 namespace FastFurios_Api.Dtos
 {

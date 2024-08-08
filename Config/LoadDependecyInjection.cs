@@ -18,6 +18,7 @@ namespace FastFurios_Api.Config
     public static void LoadServices(IServiceCollection services)
     {
       services.AddScoped<IAuthService, AuthService>();
+      services.AddScoped<IPlayerService, PlayerService>();
     }
   }
 }

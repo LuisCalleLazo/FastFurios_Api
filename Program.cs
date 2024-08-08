@@ -27,7 +27,6 @@ LoadDependecyInjection.LoadRepositories(builder.Services);
 builder.Services.ConfigureContext(builder);
 
 // TODO: Authentication
-builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureAuth(builder);
 
   
@@ -50,7 +49,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
-app.UseSession();
 app.UseCors(MyAllowSpecificOrigins);
  
 app.UseAuthentication();

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using FastFurios_Api.Dtos;
 using FastFurios_Api.Services.Interfaces;
-//using FastFurios_Api.Models;
 
 namespace FastFurios_Api.Controllers
 {

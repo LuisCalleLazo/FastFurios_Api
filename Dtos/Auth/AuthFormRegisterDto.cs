@@ -7,13 +7,6 @@ namespace FastFurios_Api.Dtos
     public string Password { get; set; } 
     public Guid PasswordSalt { get; set; }
     public DateTime BirthDate {get; set;}
-    public DateTime CreateDate {get; set; }
-
-    public AuthFormRegisterDto()
-    {
-      CreateDate = DateTime.Now;
-      PasswordSalt = Guid.NewGuid();
-    }
   }
 
   public class OAuthRegisterDto : AuthFormRegisterDto

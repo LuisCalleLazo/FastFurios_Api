@@ -22,7 +22,10 @@ namespace FastFurios_Api.Database
       });
       
       modelBuilder.Entity<Player>(t => {
-        
+        t.HasIndex(t => t.Email)
+          .IsUnique(true);
+        t.HasIndex(t => t.Name)
+          .IsUnique(true);
       });
 
 
