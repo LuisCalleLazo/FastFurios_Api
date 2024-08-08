@@ -1,5 +1,6 @@
 using AutoMapper;
 using FastFurios_Api.Dtos;
+using FastFurios_Api.Helpers;
 using FastFurios_Api.Models;
 using FastFurios_Api.Repositories.Interfaces;
 using FastFurios_Api.Security;
@@ -19,11 +20,24 @@ namespace FastFurios_Api.Services
       _playerRepo = playerRepo;
       _mapper = mapper;
     }
-    public AuthService()
-    {
-    }
+
     // TODO: AUTHENTICATION
-    
+    public async Task<AuthResponseDto> Authentication(PlayerDto playerData)
+    {
+      var jwt = JwtSecurity.GetJwtConfig();
+
+      var response = new AuthResponseDto 
+      {
+        Player = playerData,
+        CurrentToken = JwtSecurity.GenerateToken(jwt, playerData.Id),
+        RefreshToken = JwtSecurity.GenerateRefreshToken(),
+      };
+
+      await _tokenRepo.DesactiveToken(playerData.Id);
+      await _tokenRepo.CreateToken(_mapper.Map<Token>(response), playerData.Id, jwt.TimeValidMin);
+      
+      return response;
+    }
 
     public async Task<AuthResponseDto> AuthenticationLogin(LoginRequestDto auth)
     {
@@ -31,11 +45,11 @@ namespace FastFurios_Api.Services
       if(player == null) return null;
 
       var playerData = _mapper.Map<PlayerDto>(await _playerRepo.GetPlayerById(player.Id));
-      playerData.Name = player.Name;
-      playerData.Email = player.Email;
+      playerData.Age = HelpDateActions.GetAge(player.BirthDate);
       
       return await Authentication(playerData);
     }
+    
     public async Task<AuthResponseDto> AuthenticationGoogle(string googleId)
     {
       var player = await _playerRepo.GetPlayerByGoogleId(googleId);
@@ -80,21 +94,5 @@ namespace FastFurios_Api.Services
     }
 
     
-    public async Task<AuthResponseDto> Authentication(PlayerDto playerData)
-    {
-      var jwt = JwtSecurity.GetJwtConfig();
-
-      var response = new AuthResponseDto 
-      {
-        Player = playerData,
-        CurrentToken = JwtSecurity.GenerateToken(jwt, playerData.Id),
-        RefreshToken = JwtSecurity.GenerateRefreshToken(),
-      };
-
-      await _tokenRepo.DesactiveToken(playerData.Id);
-      await _tokenRepo.CreateToken(_mapper.Map<Token>(response), playerData.Id, jwt.TimeValidMin);
-      
-      return response;
-    }
   }
 }

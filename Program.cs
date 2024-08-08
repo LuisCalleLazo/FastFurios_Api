@@ -5,13 +5,9 @@ using FastFurios_Api.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAutoMapper(typeof(AuthService).Assembly);
-
 builder.Services.Configure<CloudinarySetting>
   (builder.Configuration.GetSection("CloudinarySettings"));
 
-// TODO: Controladores
-builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(AuthService).Assembly);
 
 // TODO: Habilitando los Cors
@@ -31,6 +27,7 @@ builder.Services.ConfigureAuth(builder);
 
   
 // TODO: Endpoints
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

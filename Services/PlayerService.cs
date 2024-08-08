@@ -37,6 +37,7 @@ namespace FastFurios_Api.Services
       register.Password = PasswordHash.HashPassword(register.Password, salt);
 
       var playerMap = _mapper.Map<Player>(register);
+      playerMap.PasswordSalt = salt;
      
       using var transaction = await _context.Database.BeginTransactionAsync();
       try

@@ -19,26 +19,20 @@ namespace FastFurios_Api.Controllers
     private readonly ILogger<AuthController> _logger;
     private readonly IAuthService _service;
     private readonly IPlayerService _playerServ;
-    // private readonly IOAuthService _oauthServ;
-    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public AuthController(
-      IAuthService service, 
-      // IOAuthService oauthServ,
+      IAuthService service,
       IPlayerService playerServ,
-      ILogger<AuthController> logger,
-      IHttpContextAccessor httpContextAccessor
+      ILogger<AuthController> logger
     )
     {
       _logger = logger;
       _service = service;
       _playerServ = playerServ;
-      // _oauthServ = oauthServ;
-      _httpContextAccessor = httpContextAccessor;
     }
 
-    [HttpPost("login-form")]
-    public async Task<IActionResult> Login([FromBody] LoginRequestDto auth)
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginRequestDto auth)
     {
       try
       {
