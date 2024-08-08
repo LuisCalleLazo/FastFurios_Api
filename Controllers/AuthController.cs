@@ -32,7 +32,7 @@ namespace FastFurios_Api.Controllers
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequestDto auth)
+    public async Task<IActionResult> Login([FromForm]LoginRequestDto auth)
     {
       try
       {

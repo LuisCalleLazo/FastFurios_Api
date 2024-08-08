@@ -20,3 +20,4 @@ LICENSE.txt
 *.sln
 *.csv
 ./vscode
+.env
