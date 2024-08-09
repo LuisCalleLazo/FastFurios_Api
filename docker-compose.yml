@@ -20,7 +20,7 @@ services:
     depends_on:
       - sqlserver
     environment:
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=YourDatabaseName;User=${SA_USER};Password=${SA_PASSWORD};"
+      ConnectionStrings__DefaultConnection: "Server=${MSSQL_SERVER};Database=${MSSQL_DB};User=${SA_USER};Password=${SA_PASSWORD};"
 
 volumes:
   sqlserverdata:
