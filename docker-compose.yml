@@ -16,7 +16,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - "5000:5132"
+      - "5000:8080"
     depends_on:
       - sqlserver
     environment:
