@@ -20,21 +20,21 @@ namespace FastFurios_Api.Controllers
     }
 
     [HttpPost("register")]
-    public async Task<ActionResult> RegisterPlayer(AuthFormRegisterDto register)
+    public async Task<ActionResult> RegisterPlayer([FromForm] AuthFormRegisterDto register)
     {
       try
       {
         
-        if(await _service.ExistEmail(register.Email)) return BadRequest("El email ya existe");
-        if(await _service.ExistName(register.Name)) return BadRequest("El nombre ya existe");
+        if(await _service.ExistName(register.Name)) return BadRequest(new List<string>{"El nombre ya existe"});
+        if(await _service.ExistEmail(register.Email)) return BadRequest(new List<string>{"El email ya existe"});
 
         if (HelpDateActions.GetAge(register.BirthDate) < 18) 
-          return BadRequest("No tienes la edad suficiente para este juego");
+          return BadRequest(new List<string>{"No tienes la edad suficiente para este juego"});
 
         var auth_register = await _service.RegisterPlayer(register);
         
         if (auth_register == null) 
-          return BadRequest("No se pudo el registro");
+          return BadRequest(new List<string>{"No se pudo el registro"});
           
         return Ok(auth_register);
 
