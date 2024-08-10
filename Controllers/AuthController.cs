@@ -34,19 +34,22 @@ namespace FastFurios_Api.Controllers
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromForm]LoginRequestDto auth)
     {
+      var errors = new List<string>();
       try
       {
         var authentication =  await _service.AuthenticationLogin(auth);
-        if(authentication == null) return BadRequest("Acceso denegado");
+        
+        errors.Add("Acceso denegado");
+        if(authentication == null) return BadRequest(errors);
 
         return Ok(authentication);
-
       }
       catch(Exception err)
       {
         _logger.LogError(err.Message);
         Console.WriteLine(err.StackTrace);
-        return BadRequest(message_error);
+        errors.Add(message_error);
+        return BadRequest(errors);
       }
     }
 
