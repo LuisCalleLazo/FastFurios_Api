@@ -18,7 +18,7 @@ namespace FastFurios_Api.Controllers
       _service = service;
     }
     
-    [HttpGet("connect")]
+    [HttpGet("status-user")]
     public async Task<IActionResult> Connect()
     {
       if (HttpContext.WebSockets.IsWebSocketRequest)

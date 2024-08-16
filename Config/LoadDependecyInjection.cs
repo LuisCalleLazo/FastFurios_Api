@@ -19,6 +19,7 @@ namespace FastFurios_Api.Config
     {
       services.AddScoped<IAuthService, AuthService>();
       services.AddScoped<IPlayerService, PlayerService>();
+      services.AddScoped<INotificationService, NotificationService>();
     }
   }
 }
